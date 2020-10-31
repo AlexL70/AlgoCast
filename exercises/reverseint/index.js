@@ -9,14 +9,19 @@
 //   reverseInt(-90) === -9
 
 function reverseInt(n) {
-    let copy = n < 0 ? -n : n;
-    let reversed = 0;
-    while(copy > 0) {
-        reversed *= 10;
-        reversed += copy % 10;
-        copy = Math.floor(copy / 10);
-    }
-    return n < 0 ? -reversed : reversed;
+    let sign = Math.sign(n);
+    return parseInt((n * sign).toString().split('').reverse().join('')) * sign;
 }
 
 module.exports = reverseInt;
+
+// function reverseInt(n) {
+//     let copy = n < 0 ? -n : n;
+//     let reversed = 0;
+//     while(copy > 0) {
+//         reversed *= 10;
+//         reversed += copy % 10;
+//         copy = Math.floor(copy / 10);
+//     }
+//     return n < 0 ? -reversed : reversed;
+// }
