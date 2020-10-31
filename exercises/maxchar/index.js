@@ -7,15 +7,18 @@
 
 function maxChar(str) {
     const chars = {};
-    for(let char of str) {
-        chars[char] = chars[char] + 1 || 1;
+    for(let key of str) {
+        chars[key] = chars[key] + 1 || 1;
     }
     let max = 0;
-    Object.values(chars).forEach(val => {
-        max = max < val ? val : max;
-    });
-    let index = Object.values(chars).findIndex(el => el === max);
-    return Object.keys(chars)[index];
+    let maxChar = ''
+    for(let key in chars) {
+        if(chars[key] > max) {
+            max = chars[key];
+            maxChar = key;
+        }
+    }
+    return maxChar;
 }
 
 module.exports = maxChar;
