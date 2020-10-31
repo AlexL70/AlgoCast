@@ -6,26 +6,39 @@
 // maxChar("apple 1231111") === "1"
 
 function maxChar(str) {
-    let keys = [];
-    let values = [];
-    str.split('').forEach(element => {
-        let index = keys.findIndex(el => el === element);
-        if(index < 0) {
-            keys.push(element);
-            values.push(1);
-        } else {
-            values[index]++;
-        }
+    const chars = {};
+    for(let char of str) {
+        chars[char] = chars[char] + 1 || 1;
+    }
+    let max = 0;
+    Object.values(chars).forEach(val => {
+        max = max < val ? val : max;
     });
-    maxValue = 0;
-    maxIndex = -1;
-    values.forEach((element, index) => {
-        if(element > maxValue){
-            maxValue = element;
-            maxIndex = index;
-        }
-    });
-    return keys[maxIndex];
+    let index = Object.values(chars).findIndex(el => el === max);
+    return Object.keys(chars)[index];
 }
 
 module.exports = maxChar;
+
+// function maxChar(str) {
+//     let keys = [];
+//     let values = [];
+//     str.split('').forEach(element => {
+//         let index = keys.findIndex(el => el === element);
+//         if(index < 0) {
+//             keys.push(element);
+//             values.push(1);
+//         } else {
+//             values[index]++;
+//         }
+//     });
+//     maxValue = 0;
+//     maxIndex = -1;
+//     values.forEach((element, index) => {
+//         if(element > maxValue){
+//             maxValue = element;
+//             maxIndex = index;
+//         }
+//     });
+//     return keys[maxIndex];
+// }
