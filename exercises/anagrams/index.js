@@ -9,26 +9,36 @@
 //   anagrams('Hi there', 'Bye there') --> False
 
 function anagrams(stringA, stringB) {
-    const mapA = createCharMap(stringA);
-    const mapB = createCharMap(stringB);
-    if(Object.keys(mapA).length !== Object.keys(mapB).length) {
-        return false;
-    }
-
-    for (const key in mapA) {
-        if(mapA[key] !== mapB[key])
-            return false;
-    }
-
-    return true;
+    return cleanAndSort(stringA) === cleanAndSort(stringB);
 }
 
-function createCharMap(s) {
-    let charMap = {};
-    for (const char of s.replace(/[^\w]/g, '').toLowerCase()) {
-        charMap[char] = charMap[char] + 1 || 1;
-    }
-    return charMap;
+function cleanAndSort(s) { 
+    return s.replace(/[^\w]/g, '').toLowerCase().split('').sort().join('');
 }
 
 module.exports = anagrams;
+
+//  First solution
+// function anagrams(stringA, stringB) {
+//     const mapA = createCharMap(stringA);
+//     const mapB = createCharMap(stringB);
+//     if(Object.keys(mapA).length !== Object.keys(mapB).length) {
+//         return false;
+//     }
+
+//     for (const key in mapA) {
+//         if(mapA[key] !== mapB[key])
+//             return false;
+//     }
+
+//     return true;
+// }
+
+// function createCharMap(s) {
+//     let charMap = {};
+//     for (const char of s.replace(/[^\w]/g, '').toLowerCase()) {
+//         charMap[char] = charMap[char] + 1 || 1;
+//     }
+//     return charMap;
+// }
+
