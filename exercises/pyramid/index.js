@@ -14,22 +14,40 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {
-    const rowlen = n * 2 - 1;
-    const midpoint = Math.floor(rowlen / 2);
-    for(let i = 0; i < n; i++) {
-        let level = "";
-        for(let row = 0; row < rowlen; row++) {
-          level += row < (midpoint - i)
-                || row > (midpoint + i)
-                    ? ' ' : '#';
-        }
+function pyramid(n, row = 0, level = '') {
+    if(row === n)
+        return;
+    
+    const levelLenght = n * 2 - 1;
+    const midpoint = Math.trunc(levelLenght / 2);
+    if(level.length === levelLenght) {
         console.log(level);
+        pyramid(n, row + 1);
+        return;
     }
+
+    level += level.length >= (midpoint - row)
+          && level.length <= (midpoint + row)
+        ? '#' : ' ';
+    pyramid(n, row, level);
 }
 
 //pyramid(10);
 module.exports = pyramid;
+
+// function pyramid(n) {
+//     const rowlen = n * 2 - 1;
+//     const midpoint = Math.floor(rowlen / 2);
+//     for(let i = 0; i < n; i++) {
+//         let level = "";
+//         for(let row = 0; row < rowlen; row++) {
+//           level += row < (midpoint - i)
+//                 || row > (midpoint + i)
+//                     ? ' ' : '#';
+//         }
+//         console.log(level);
+//     }
+// }
 
 // function pyramid(n, rowlen = n * 2 - 1, level = "") {
 //     if(n === 0)
