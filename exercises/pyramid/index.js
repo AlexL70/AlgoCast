@@ -15,12 +15,13 @@
 //       '#####'
 
 function pyramid(n) {
-    let rowlen = n * 2 - 1;
-    for(let i = 1; i <= n; i++) {
+    const rowlen = n * 2 - 1;
+    const midpoint = Math.floor(rowlen / 2);
+    for(let i = 0; i < n; i++) {
         let level = "";
-        while(level.length < rowlen) {
-          level += level.length < (Math.trunc(rowlen / 2) - i + 1)
-                || level.length > (Math.trunc(rowlen / 2) + i - 1)
+        for(let row = 0; row < rowlen; row++) {
+          level += row < (midpoint - i)
+                || row > (midpoint + i)
                     ? ' ' : '#';
         }
         console.log(level);
